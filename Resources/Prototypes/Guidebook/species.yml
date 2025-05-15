@@ -17,6 +17,9 @@
     - Vox
     - Vulpkanin
     - Rodentia
+    - IPC
+    # ImpStation additions
+    - Thaven
 
 - type: guideEntry
   id: Arachnid
@@ -83,3 +86,8 @@
   id: Rodentia
   name: species-name-rodentia
   text: "/ServerInfo/Guidebook/Mobs/DeltaV/Rodentia.xml"
+
+- type: guideEntry
+  id: IPC
+  name: species-name-ipc
+  text: "/ServerInfo/Guidebook/Mobs/IPCs.xml"

@@ -20,6 +20,7 @@
       - id: Plunger
         amount: 2
       - id: BoxCleanerGrenades
+      - id: Holoprojector
 
 - type: entity
   id: CrateServiceReplacementLights
@@ -31,6 +32,17 @@
     contents:
       - id: BoxLighttube
       - id: BoxLightbulb
+
+- type: entity
+  id: CrateServiceHolidayLights
+  parent: CrateGenericSteel
+  name: holiday lights crate
+  description: Deck the halls with these festive holiday lights!
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxLighttubeHoliday
+      - id: BoxLighttubeHoliday
 
 - type: entity
   id: CrateMousetrapBoxes
@@ -93,6 +105,9 @@
     - id: ClownRecorder
     - id: ClothingBeltSuspendersRed
     - id: ClothingBeltSuspendersBlack
+    - id: ClothingHeadHatWizard
+    - id: ClothingOuterWizard
+    - id: ClothingShoesWizard
 
 - type: entity
   id: CrateServiceCustomSmokable
@@ -130,6 +145,7 @@
     - id: BoxFolderYellow
     - id: NewtonCradle
     - id: BoxEnvelope
+    - id: BrbSign
 
 - type: entity
   id: CrateServiceFaxMachine

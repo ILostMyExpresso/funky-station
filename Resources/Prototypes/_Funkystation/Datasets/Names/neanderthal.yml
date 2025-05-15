@@ -1,0 +1,5 @@
+- type: localizedDataset
+  id: NamesNeanderthalNormal
+  values:
+    prefix: names-neanderthal-data-set-
+    count: 22

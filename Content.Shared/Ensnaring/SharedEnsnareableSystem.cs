@@ -91,7 +91,12 @@ public abstract class SharedEnsnareableSystem : EntitySystem
         Dirty(uid, component);
         ensnaring.Ensnared = null;
 
-        _hands.PickupOrDrop(args.Args.User, args.Args.Used.Value);
+        // Goobstation start
+        if (ensnaring.DestroyOnRemove)
+            QueueDel(args.Args.Used.Value);
+        else
+            _hands.PickupOrDrop(args.Args.User, args.Args.Used.Value);
+        // Goobstation end
 
         if (args.User == args.Target)
             Popup.PopupPredicted(Loc.GetString("ensnare-component-try-free-complete", ("ensnare", args.Args.Used)), uid, args.User, PopupType.Medium);
@@ -256,23 +261,18 @@ public abstract class SharedEnsnareableSystem : EntitySystem
         if (!TryComp<EnsnareableComponent>(target, out var ensnareable))
             return false;
 
-        // Need to insert before free legs check.
-        Container.Insert(ensnare, ensnareable.Container);
+        var numEnsnares = ensnareable.Container.ContainedEntities.Count;
 
-        var legs = _body.GetBodyChildrenOfType(target, BodyPartType.Leg).Count();
-        var ensnaredLegs = (2 * ensnareable.Container.ContainedEntities.Count);
-        var freeLegs = legs - ensnaredLegs;
-
-        if (freeLegs > 0)
+        //Don't do anything if the maximum number of ensnares is applied.
+        if (numEnsnares >= component.MaxEnsnares)
             return false;
 
-        // Apply stamina damage to target if they weren't ensnared before.
-        if (ensnareable.IsEnsnared != true)
+        Container.Insert(ensnare, ensnareable.Container);
+
+        // Apply stamina damage to target
+        if (TryComp<StaminaComponent>(target, out var stamina))
         {
-            if (TryComp<StaminaComponent>(target, out var stamina))
-            {
-                _stamina.TakeStaminaDamage(target, component.StaminaDamage, with: ensnare, component: stamina);
-            }
+            _stamina.TakeStaminaDamage(target, component.StaminaDamage, with: ensnare, component: stamina);
         }
 
         component.Ensnared = target;

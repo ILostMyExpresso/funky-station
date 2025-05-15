@@ -21,6 +21,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Popups;
 using Content.Shared.Prototypes;
 using Content.Shared.Standing;
+using Content.Shared.Tag; // DeltaV: surgery can operate through some clothing
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
@@ -47,6 +48,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     [Dependency] private readonly RotateToFaceSystem _rotateToFace = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly TagSystem _tagSystem = default!; // DeltaV: surgery can operate through some clothing
 
     /// <summary>
     /// Cache of all surgery prototypes' singleton entities.
@@ -71,13 +73,16 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         SubscribeLocalEvent<SurgeryTargetComponent, SurgeryDoAfterEvent>(OnTargetDoAfter);
         SubscribeLocalEvent<SurgeryCloseIncisionConditionComponent, SurgeryValidEvent>(OnCloseIncisionValid);
         //SubscribeLocalEvent<SurgeryLarvaConditionComponent, SurgeryValidEvent>(OnLarvaValid);
-        SubscribeLocalEvent<SurgeryComponentConditionComponent, SurgeryValidEvent>(OnComponentConditionValid);
+        SubscribeLocalEvent<SurgeryHasBodyConditionComponent, SurgeryValidEvent>(OnHasBodyConditionValid);
         SubscribeLocalEvent<SurgeryPartConditionComponent, SurgeryValidEvent>(OnPartConditionValid);
         SubscribeLocalEvent<SurgeryOrganConditionComponent, SurgeryValidEvent>(OnOrganConditionValid);
         SubscribeLocalEvent<SurgeryWoundedConditionComponent, SurgeryValidEvent>(OnWoundedValid);
         SubscribeLocalEvent<SurgeryPartRemovedConditionComponent, SurgeryValidEvent>(OnPartRemovedConditionValid);
         SubscribeLocalEvent<SurgeryPartPresentConditionComponent, SurgeryValidEvent>(OnPartPresentConditionValid);
         SubscribeLocalEvent<SurgeryMarkingConditionComponent, SurgeryValidEvent>(OnMarkingPresentValid);
+        SubscribeLocalEvent<SurgeryBodyComponentConditionComponent, SurgeryValidEvent>(OnBodyComponentConditionValid);
+        SubscribeLocalEvent<SurgeryPartComponentConditionComponent, SurgeryValidEvent>(OnPartComponentConditionValid);
+        SubscribeLocalEvent<SurgeryOrganOnAddConditionComponent, SurgeryValidEvent>(OnOrganOnAddConditionValid);
         //SubscribeLocalEvent<SurgeryRemoveLarvaComponent, SurgeryCompletedEvent>(OnRemoveLarva);
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
 
@@ -96,8 +101,14 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
-        if (args.Cancelled
-            || args.Handled
+        if (args.Cancelled)
+        {
+            var failEv = new SurgeryStepFailedEvent(args.User, ent, args.Surgery, args.Step);
+            RaiseLocalEvent(args.User, ref failEv);
+            return;
+        }
+
+        if (args.Handled
             || args.Target is not { } target
             || !IsSurgeryValid(ent, target, args.Surgery, args.Step, args.User, out var surgery, out var part, out var step)
             || !PreviousStepsComplete(ent, part, surgery, args.Step)
@@ -147,20 +158,78 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             args.Cancelled = true;
     }*/
 
-    private void OnComponentConditionValid(Entity<SurgeryComponentConditionComponent> ent, ref SurgeryValidEvent args)
+    private void OnBodyComponentConditionValid(Entity<SurgeryBodyComponentConditionComponent> ent, ref SurgeryValidEvent args)
     {
         var present = true;
-        foreach (var reg in ent.Comp.Component.Values)
+        foreach (var reg in ent.Comp.Components.Values)
         {
             var compType = reg.Component.GetType();
-            if (!HasComp(args.Part, compType))
+            if (!HasComp(args.Body, compType))
                 present = false;
         }
 
         if (ent.Comp.Inverse ? present : !present)
             args.Cancelled = true;
     }
-    
+
+    private void OnPartComponentConditionValid(Entity<SurgeryPartComponentConditionComponent> ent, ref SurgeryValidEvent args)
+    {
+        var present = true;
+        foreach (var reg in ent.Comp.Components.Values)
+        {
+            var compType = reg.Component.GetType();
+            if (!HasComp(args.Part, compType))
+                present = false;
+        }
+        if (ent.Comp.Inverse ? present : !present)
+            args.Cancelled = true;
+    }
+
+    // This is literally a duplicate of the checks in OnToolCheck for SurgeryStepComponent.AddOrganOnAdd
+    private void OnOrganOnAddConditionValid(Entity<SurgeryOrganOnAddConditionComponent> ent, ref SurgeryValidEvent args)
+    {
+        if (!TryComp<BodyPartComponent>(args.Part, out var part)
+            || part.Body != args.Body)
+        {
+            args.Cancelled = true;
+            return;
+        }
+
+        var organSlotIdToOrgan = _body.GetPartOrgans(args.Part, part).ToDictionary(o => o.Item2.SlotId, o => o.Item2);
+
+        var allOnAddFound = true;
+        var zeroOnAddFound = true;
+
+        foreach (var (organSlotId, components) in ent.Comp.Components)
+        {
+            if (!organSlotIdToOrgan.TryGetValue(organSlotId, out var organ))
+                continue;
+
+            if (organ.OnAdd == null)
+            {
+                allOnAddFound = false;
+                continue;
+            }
+
+            foreach (var key in components.Keys)
+            {
+                if (!organ.OnAdd.ContainsKey(key))
+                    allOnAddFound = false;
+                else
+                    zeroOnAddFound = false;
+            }
+        }
+
+        if (ent.Comp.Inverse ? allOnAddFound : zeroOnAddFound)
+            args.Cancelled = true;
+    }
+
+    private void OnHasBodyConditionValid(Entity<SurgeryHasBodyConditionComponent> ent, ref SurgeryValidEvent args)
+    {
+        if (CompOrNull<BodyPartComponent>(args.Part)?.Body == null)
+            args.Cancelled = true;
+    }
+
     private void OnPartConditionValid(Entity<SurgeryPartConditionComponent> ent, ref SurgeryValidEvent args)
     {
         if (!TryComp<BodyPartComponent>(args.Part, out var part))

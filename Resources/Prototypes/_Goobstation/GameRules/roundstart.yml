@@ -14,6 +14,7 @@
     - EscapeIdentityObjective
     - ChangelingSurviveObjective
   - type: AntagSelection
+    selectionTime: IntraPlayerSpawn
     agentName: changeling-roundend-name
     definitions:
     - prefRoles: [ Changeling ]
@@ -22,10 +23,13 @@
       lateJoinAdditional: true
       mindRoles:
       - MindRoleChangeling
+  - type: Tag
+    tags:
+      - RoundstartAntag
 
 - type: entity
   parent: BaseTraitorRule
-  id: CalmTraitor # For Dual Antag Gamemodes
+  id: CalmTraitor # For Dual Antag Gamemodes / Funky: For gamemodes that need nerfed antags
   components:
   - type: GameRule
     minPlayers: 15
@@ -33,6 +37,7 @@
       min: 240
       max: 420
   - type: AntagSelection
+    selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Traitor ]
       max: 4
@@ -44,10 +49,13 @@
       lateJoinAdditional: true
       mindRoles:
       - MindRoleTraitor
+  - type: Tag
+    tags:
+      - CalmAntag
 
 - type: entity
   parent: Changeling
-  id: CalmLing # For Dual Antag Gamemodes
+  id: CalmLing # For Dual Antag Gamemodes / Funky: For gamemodes that need nerfed antags
   components:
   - type: GameRule
     minPlayers: 15
@@ -55,6 +63,7 @@
       min: 30
       max: 60
   - type: AntagSelection
+    selectionTime: IntraPlayerSpawn
     agentName: changeling-roundend-name
     definitions:
     - prefRoles: [ Changeling ]
@@ -63,13 +72,16 @@
       lateJoinAdditional: true
       mindRoles:
       - MindRoleTraitor
+  - type: Tag
+    tags:
+      - CalmAntag
 
 - type: entity
   parent: BaseNukeopsRule
-  id: Calmops # For Dual Antag Gamemodes
+  id: Calmops # For Dual Antag Gamemodes / Funky: For gamemodes that need nerfed antags
   components:
   - type: GameRule
-    minPlayers: 30
+    minPlayers: 40
   - type: LoadMapRule
     mapPath: /Maps/Nonstations/nukieplanet.yml
   - type: AntagSelection
@@ -83,8 +95,8 @@
       - type: NukeOperative
       - type: RandomMetadata
         nameSegments:
-        - nukeops-role-commander
-        - SyndicateNamesElite
+        - NamesNukieFirstCommander
+        - NamesSyndicateElite
       - type: NpcFactionMember
         factions:
         - Syndicate
@@ -98,8 +110,8 @@
       - type: NukeOperative
       - type: RandomMetadata
         nameSegments:
-        - nukeops-role-agent
-        - SyndicateNamesNormal
+        - NamesNukieFirstAgent
+        - NamesSyndicateNormal
       - type: NpcFactionMember
         factions:
         - Syndicate
@@ -109,28 +121,32 @@
       fallbackRoles: [ NukeopsCommander, NukeopsMedic ]
       spawnerPrototype: SpawnPointNukeopsOperative
       max: 2
-      playerRatio: 15
+      playerRatio: 30
       startingGear: SyndicateOperativeGearFull
       components:
       - type: NukeOperative
       - type: RandomMetadata
         nameSegments:
-        - nukeops-role-operator
-        - SyndicateNamesNormal
+        - NamesNukieFirstOperator
+        - NamesSyndicateNormal
       - type: NpcFactionMember
         factions:
         - Syndicate
       mindRoles:
       - MindRoleNukeops
+  - type: Tag
+    tags:
+      - RoundstartAntag # Calmer than extreme = normal
 
 - type: entity
-  id: CalmRevs # For Dual Antag Gamemodes
+  id: CalmRevs # For Dual Antag Gamemodes / Funky: For rounds that need a nerfed version in general
   parent: BaseGameRule
   components:
   - type: GameRule
     minPlayers: 30
   - type: RevolutionaryRule
   - type: AntagSelection
+    selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ HeadRev ]
       max: 2
@@ -139,9 +155,74 @@
         text: head-rev-role-greeting
         color: CornflowerBlue
         sound: "/Audio/Ambience/Antag/headrev_start.ogg"
-      startingGear: HeadRevGear
+      #startingGear: HeadRevGear
       components:
       - type: Revolutionary
       - type: HeadRevolutionary
       mindRoles:
       - MindRoleHeadRevolutionary
+  - type: Tag
+    tags:
+      - RoundstartAntag # Funky: Calmer than extreme = normal
+# Blob
+- type: entity
+  id: BlobRule
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BlobRule
+
+- type: entity
+  id: BlobGameMode
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BlobRule
+  - type: GameRule
+    minPlayers: 15
+    delay: # 7-10 minutes
+      min: 420
+      max: 600
+  - type: AntagSelection
+    definitions:
+    - prefRoles: [ Blob ]
+      min: 1
+      max: 2
+      playerRatio: 35 #players = 2 blobs
+      allowNonHumans: true
+      blacklist:
+        components:
+        - AntagImmune
+      briefing:
+        text: blob-carrier-role-greeting
+        color: Plum
+        sound: /Audio/Announcements/bloblarm.ogg
+      mindRoles:
+      - MindRoleBlob
+
+- type: entity
+  id: BlobSpawn
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    weight: 5
+    duration: 1
+    earliestStart: 50
+    minimumPlayers: 25
+    maxOccurrences: 2
+    chaos:
+      Hostile: 150
+      Medical: 150
+      Death: 150
+    maxChaos:
+      Hostile: 30
+      Combat: -60
+      Power: 70
+      Medical: 70
+      Atmos: 70
+  - type: BlobSpawnRule
+    carrierBlobProtos:
+    - SpawnPointGhostBlobRat
+    playersPerCarrierBlob: 30
+    maxCarrierBlob: 2

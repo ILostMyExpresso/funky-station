@@ -69,6 +69,35 @@
     Telecrystal: 50
   categories:
   - UplinkWeaponry
+
+- type: listing
+  id: UplinkBowHardlight
+  name: uplink-hardlight-bow-name
+  description: uplink-hardlight-bow-desc
+  icon: { sprite:  /Textures/_Goobstation/Objects/Weapons/Guns/Bow/hardlight_bow.rsi, state: icon }
+  productEntity: BowHardlight
+  cost:
+    Telecrystal: 80
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+
+
+
+- type: listing
+  id: UplinkHardsuitCybersunStealth
+  name: uplink-hardsuit-cybersun-stealth-name
+  description: uplink-hardsuit-cybersun-stealth-desc
+  icon: { sprite: /Textures/_Goobstation/Clothing/OuterClothing/Hardsuits/cybersunstealth.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateStealthHardsuitBundle
+  cost:
+    Telecrystal: 75 # might be op? needs testing to see. increase price to 90 TC when we merge the upstream fix that hides HUD stuff for stealthed entities.
+  categories:
+  - UplinkWearables
   saleLimit: 1
 
 # Job specific
@@ -180,14 +209,6 @@
           - NukeOpsUplink # i guess we dont let nukies have this, they have to mutch TC
   saleLimit: 1
 
-- type: listing
-  id: UplinkSmugglerSatchel
-  name: uplink-smugglers-satchel-name
-  description: uplink-smugglers-satchel-desc
-  icon: { sprite: Clothing/Back/Satchels/satchel.rsi, state: icon }
-  productEntity: ClothingSatchelSmuggler
-  cost:
-    Telecrystal: 15
-  categories:
-  - UplinkDeception
-  saleLimit: 1
+# Mechs
+
+

@@ -14,6 +14,19 @@
   suffix: Smear
 
 - type: entity
+  id: PuddleVentCrud
+  parent: PuddleTemporary
+  suffix: VentCrud
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      puddle:
+        maxVol: 1000
+        reagents:
+        - ReagentId: VentCrud
+          Quantity: 15
+
+- type: entity
   id: PuddleVomit
   parent: PuddleTemporary
   suffix: Vomit
@@ -101,7 +114,7 @@
       layers:
         - sprite: Fluids/wet_floor_sparkles.rsi
           state: sparkles
-      drawdepth: FloorObjects
+      drawdepth: Puddles
       color: "#FFFFFF80"
 
 - type: entity
@@ -120,7 +133,7 @@
     layers:
     - sprite: Fluids/puddle.rsi
       state: splat0
-    drawdepth: FloorObjects
+    drawdepth: Puddles
     color: "#FFFFFF80"
   - type: Physics
     bodyType: Static
@@ -142,6 +155,8 @@
         hard: false
   - type: IconSmooth
     key: puddles
+    additionalKeys:
+    - walls
     base: splat
     mode: CardinalFlags
   - type: SolutionContainerManager
@@ -156,6 +171,9 @@
   - type: EdgeSpreader
     id: Puddle
   - type: StepTrigger
+    triggerGroups: # Goobstation
+      types:
+      - SlipTile
   - type: Drink
     delay: 3
     transferAmount: 1

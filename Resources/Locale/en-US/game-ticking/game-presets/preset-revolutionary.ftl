@@ -12,7 +12,10 @@ head-rev-role-greeting =
 
 head-rev-briefing =
     Use flashes to convert people to your cause.
-    Get rid of all heads or convert them to take over the station.
+    Eliminate all heads of staff, and secure the station.
+    You have been graciously sponsored with an uplink from
+    the YLF, in-coordination with the Syndicate.
+    Your uplink code is: {$code}
 
 head-rev-break-mindshield = The Mindshield neutralized hypnotic powers, but its functionality has been compromised!
 
@@ -42,11 +45,13 @@ rev-no-heads = There were no Head Revolutionaries to be selected. Can't start a 
 
 rev-won = The Head Revs survived and successfully seized control of the station.
 
-rev-lost = Command survived and neutralized all of the Head Revs.
+rev-lost = Command survived and neutralized all of the Head Revs. Major revolutionary defeat.
 
-rev-stalemate = All of the Head Revs and Command died. It's a draw.
+rev-stalemate = All of the Head Revs and Command died. It's a major loss on all sides.
 
-rev-reverse-stalemate = Both Command and Head Revs survived.
+rev-reverse-stalemate = Both Command and Head Revs survived. It's a draw.
+
+rev-total-victory = All of Command and Head Revs survived, with all of Command being converted.
 
 rev-headrev-count = {$initialCount ->
     [one] There was one Head Revolutionary:
@@ -71,3 +76,7 @@ rev-deconverted-text =
 
     You are no longer a revolutionary, so be nice.
 rev-deconverted-confirm = Confirm
+
+rev-headrev-must-return = The Revolution is leaderless. We must return to the station within a minute!
+rev-headrev-returned = A Head Revolutionary has returned to the station, the Revolution continues!
+rev-headrev-abandoned = You have disgraced the revolution by abandoning your station. The Revolution is over.

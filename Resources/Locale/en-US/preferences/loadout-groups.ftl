@@ -15,6 +15,7 @@ loadout-group-survival-syndicate = Github is forcing me to write text that is li
 loadout-group-breath-tool = Species-dependent breath tools
 loadout-group-tank-harness = Species-specific survival equipment
 loadout-group-EVA-tank = Species-specific gas tank
+loadout-group-vox-tank = Vox-specific gas tank
 loadout-group-pocket-tank-double = Species-specific double emergency tank in pocket
 loadout-group-survival-mime = Mime Survival Box
 
@@ -72,6 +73,7 @@ loadout-group-botanist-backpack = Botanist backpack
 loadout-group-botanist-outerclothing = Botanist outer clothing
 
 loadout-group-clown-head = Clown head
+loadout-group-clown-mask = Clown mask
 loadout-group-clown-jumpsuit = Clown jumpsuit
 loadout-group-clown-backpack = Clown backpack
 loadout-group-clown-outerclothing = Clown outer clothing
@@ -141,6 +143,7 @@ loadout-group-scientist-outerclothing = Scientist outer clothing
 loadout-group-scientist-gloves = Scientist gloves
 loadout-group-scientist-shoes = Scientist shoes
 loadout-group-scientist-id = Scientist ID
+loadout-group-roboticist-id = Roboticist ID
 
 loadout-group-research-assistant-jumpsuit = Research Assistant jumpsuit
 
@@ -153,9 +156,11 @@ loadout-group-head-of-security-outerclothing = Head of Security outer clothing
 loadout-group-warden-head = Warden head
 loadout-group-warden-jumpsuit = Warden jumpsuit
 loadout-group-warden-outerclothing = Warden outer clothing
+loadout-group-warden-neck = Warden neck
 
 loadout-group-security-head = Security head
 loadout-group-security-jumpsuit = Security jumpsuit
+loadout-group-security-neck = Security neck
 loadout-group-security-backpack = Security backpack
 loadout-group-security-belt = Security Belt
 loadout-group-security-outerclothing = Security outer clothing

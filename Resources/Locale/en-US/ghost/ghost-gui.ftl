@@ -3,7 +3,9 @@ ghost-gui-ghost-warp-button = Ghost Warp
 ghost-gui-ghost-roles-button = Ghost Roles ({$count})
 ghost-gui-toggle-ghost-visibility-popup-on = Enabled visibility of ghosts.
 ghost-gui-toggle-ghost-visibility-popup-off = Disabled visibility of ghosts.
-ghost-gui-toggle-lighting-manager-popup = Toggled all lighting.
+ghost-gui-toggle-lighting-manager-popup-normal = Lighting normal.
+ghost-gui-toggle-lighting-manager-popup-personal-light = Enabled personal light.
+ghost-gui-toggle-lighting-manager-popup-fullbright = Fullbright mode.
 ghost-gui-toggle-fov-popup = Toggled field-of-view.
 
 ghost-gui-toggle-hearing-popup-on = You can now hear all messages.
@@ -34,3 +36,5 @@ ghost-roles-window-rules-footer = The button will enable after {$time} seconds (
 
 ghost-return-to-body-title = Return to Body
 ghost-return-to-body-text = Med is so competent that you are being revived! Return to your body?
+                                               - Rule 6 Reminder -
+    You do not recall the cause of your death or anything leading up to it.

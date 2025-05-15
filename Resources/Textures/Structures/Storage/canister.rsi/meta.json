@@ -107,10 +107,22 @@
       "name": "frezon-1"
     },
     {
-      "name": "bz"
+      "name": "water_vapor"
     },
     {
-      "name": "bz-1"
+      "name": "water_vapor-1"
+    },
+    {
+      "name": "purple"
+    },
+    {
+      "name": "purple-1"
+    },
+    {
+      "name": "brown"
+    },
+    {
+      "name": "brown-1"
     },
     {
       "name": "healium"
@@ -119,10 +131,28 @@
       "name": "healium-1"
     },
     {
-      "name": "water_vapor"
+      "name": "white"
     },
     {
-      "name": "water_vapor-1"
+      "name": "white-1"
+    },
+    {
+      "name": "nob"
+    },
+    {
+      "name": "proto_nitrate"
+    },
+    {
+      "name": "zauker"
+    },
+    {
+      "name": "halon"
+    },
+    {
+      "name": "helium"
+    },
+    {
+      "name": "antinob"
     },
     {
       "name": "scrubber-connector"

@@ -1,24 +1,13 @@
 - type: gameMapPool
   id: DefaultMapPool
   maps:
-  - Atlas
-  - Bagel
-  - Box
+  - Reach # funky station - for lowpop enjoyers
+  - Barratry
+  - FlandHighPop
   - Cluster
-  #- Cog # Goobstation - cog is broken
-  - Core
-  - Divide #funkystation - IF YOU REMOVE DIVIDE AGAIN I WILL END YOUR BLOODLINE
-  - Fland
-  - Marathon
-  - Meta
-  - Oasis
   - Omega
   - Origin
-  - Saltern
-  - Packed
-  - Reach
-  - Train
-  - FlandHighPop
-  - OasisHighPop
-  - Barratry # Goobstation - Re-add barratry
-  - Kettle # Goobstation - Re-add kettle (before it was gemini!)
+  - Box
+  - Bagel
+
+

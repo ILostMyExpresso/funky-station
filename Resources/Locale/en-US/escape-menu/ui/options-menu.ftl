@@ -2,6 +2,7 @@
 
 ui-options-title = Game Options
 ui-options-tab-accessibility = Accessibility
+ui-options-tab-admin = Admin
 ui-options-tab-graphics = Graphics
 ui-options-tab-controls = Controls
 ui-options-tab-audio = Audio
@@ -37,6 +38,7 @@ ui-options-lobby-music = Lobby & Round-end Music
 ui-options-restart-sounds = Round Restart Sounds
 ui-options-event-music = Event Music
 ui-options-admin-sounds = Play Admin Sounds
+ui-options-bwoink-sound = Play AHelp Notification Sound
 ui-options-volume-label = Volume
 
 ## Graphics menu
@@ -283,6 +285,27 @@ ui-options-colorblind-friendly = Colorblind friendly mode
 ui-options-reduced-motion = Reduce motion of visual effects
 ui-options-chat-window-opacity = Chat window opacity
 ui-options-screen-shake-intensity = Screen shake intensity
+ui-options-speech-bubble-text-opacity = Speech bubble text opacity
+ui-options-speech-bubble-speaker-opacity = Speech bubble speaker opacity
+ui-options-speech-bubble-background-opacity = Speech bubble background opacity
 
 ## Shitmed Change
 ui-options-header-targeting = Targeting
+
+
+## Admin menu
+
+ui-options-admin-player-panel = Admin Menu Players List
+
+ui-options-admin-playerlist-separate-symbols = Show separate symbols for each antag role type
+ui-options-admin-playerlist-character-color = Color names of antagonist characters
+ui-options-admin-playerlist-roletype-color = Color role types
+
+ui-options-admin-overlay-title = Admin Overlay
+ui-options-enable-classic-overlay = Revert overlay to classic mode
+ui-options-enable-overlay-symbols = Add antag symbol to text
+ui-options-enable-overlay-playtime = Show playtime
+ui-options-enable-overlay-starting-job = Show starting job
+ui-options-overlay-merge-distance = Stack merge distance
+ui-options-overlay-ghost-fade-distance = Ghost overlay fade range from mouse
+ui-options-overlay-ghost-hide-distance = Ghost overlay hide range from mouse

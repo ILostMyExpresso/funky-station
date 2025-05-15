@@ -14,6 +14,7 @@
     tags:
     - SurgeryTool
   - type: SurgeryTool
+  - type: SurgeryDirtiness # DeltaV - make sure surgery tools start with surgery dirtiness component
 
 # Cautery
 
@@ -83,6 +84,10 @@
   components:
   - type: Sharp
     butcherDelayModifier: 1.5 # Butchering with a scalpel, regardless of the type, will take 50% longer
+  - type: Tool
+    qualities:
+    - Slicing
+    speedModifier: 0.66 # pretend the sixes go on forever :)
   - type: Utensil
     types:
       - Knife
@@ -441,22 +446,32 @@
     startSound:
       path: /Audio/_Shitmed/Medical/Surgery/saw.ogg
   - type: Hemostat
-    speed: 2
+    speed: 0.75  # funkystation
   - type: Scalpel
-    speed: 2
+    speed: 0.75  # funkystation
   - type: Drill
-    speed: 2
+    speed: 0.75  # funkystation
   - type: BoneSetter
-    speed: 2
+    speed: 0.75  # funkystation
   - type: Retractor
-    speed: 2
+    speed: 0.75  # funkystation
   - type: Cautery
-    speed: 2
+    speed: 0.75  # funkystation
   - type: BoneGel
-    speed: 2
+    speed: 0.75  # funkystation
   - type: BoneSaw
-    speed: 2
+    speed: 0.75  # funkystation
   - type: Tweezers
-    speed: 2
+    speed: 0.75  # funkystation
   - type: Tending
-    speed: 2
+    speed: 0.75  # funkystation
+
+- type: entity
+  parent: [ OmnimedTool, BaseSyndicateContraband ]
+  id: OmnimedToolSyndie
+  components:
+  - type: Sprite
+    state: evil
+  - type: Item
+    size: Small
+    heldPrefix: evil

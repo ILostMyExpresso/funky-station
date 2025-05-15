@@ -99,9 +99,9 @@ public sealed partial class ZombieComponent : Component
     {
         DamageDict = new ()
         {
-            { "Blunt", -0.4 },
-            { "Slash", -0.2 },
-            { "Piercing", -0.2 },
+            { "Blunt", -0.6 },
+            { "Slash", -0.3 },
+            { "Piercing", -0.3 },
             { "Heat", -0.02 },
             { "Shock", -0.02 }
         }
@@ -124,6 +124,20 @@ public sealed partial class ZombieComponent : Component
             { "Blunt", -2 },
             { "Slash", -2 },
             { "Piercing", -2 }
+        }
+    };
+
+    /// <summary>
+    /// The damage dealt on bite, dehardcoded for your enjoyment
+    /// </summary>
+    [DataField]
+    public DamageSpecifier DamageOnBite = new()
+    {
+        DamageDict = new()
+        {
+            { "Slash", 13 },
+            { "Piercing", 7 },
+            { "Structural", 10 }
         }
     };
 

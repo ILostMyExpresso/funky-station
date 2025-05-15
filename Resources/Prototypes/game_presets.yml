@@ -1,6 +1,3 @@
-# goob edit - separated antag and basic event schedulers
-# if you see a AntagStationEventScheduler it's from goobstation
-
 - type: gamePreset
   id: Survival
   alias:
@@ -25,7 +22,7 @@
   showInVote: false # secret
   description: kessler-syndrome-description
   rules:
-    - KesslerSyndromeScheduler
+#    - KesslerSyndromeScheduler
     - RampingStationEventScheduler
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
@@ -42,6 +39,8 @@
     - Traitor
     - Revolutionary
     - Zombie
+    - BlobGameMode # Goobstation antag
+    - SubGamemodesRule
     # - KesslerSyndromeScheduler Goobstation - nuh uh
     - RampingStationEventScheduler
     - Changeling # Goobstation - changeling playtest
@@ -59,14 +58,17 @@
   description: aller-at-once-description
   showInVote: false #Please god dont do this
   rules:
+    - CosmicCult
     - Nukeops
     - Traitor
     - Revolutionary
     - Zombie
+    - BlobGameMode # Goobstation antag
+    - SubGamemodesRule
     - BasicStationEventScheduler
-    - KesslerSyndromeScheduler
-    - MeteorSwarmMildScheduler
-    - MeteorSwarmScheduler
+#    - KesslerSyndromeScheduler
+#    - MeteorSwarmMildScheduler # Goob Edit
+#    - MeteorSwarmScheduler # Goob edit
     - RampingStationEventScheduler
     - SpaceTrafficControlEventScheduler
     - SpaceTrafficControlFriendlyEventScheduler
@@ -105,7 +107,7 @@
     - secret
     - sekrit
   name: secret-title
-  showInVote: true
+  showInVote: true # Goob - Game Director
   description: secret-description
   rules:
     - Secret
@@ -154,11 +156,11 @@
   description: traitor-description
   showInVote: false
   rules:
+    - DummyNonAntagChance
     - Traitor
-    # - SubGamemodesRule
+    - SubGamemodesRule
     - BasicStationEventScheduler
-    - AntagStationEventScheduler
-  #  - MeteorSwarmScheduler Goobstation - nuh uh
+    # - MeteorSwarmScheduler
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
 
@@ -184,10 +186,10 @@
   showInVote: false
   rules:
     - Nukeops
+    - DummyNonAntagChance
     - SubGamemodesRule
     - BasicStationEventScheduler
-    - AntagStationEventScheduler
-  #  - MeteorSwarmScheduler Goobstation - nuh uh
+    # - MeteorSwarmScheduler
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
 
@@ -201,13 +203,28 @@
   description: rev-description
   showInVote: false
   rules:
-    - Revolutionary
-    # - SubGamemodesRule
-    - BasicStationEventScheduler
-    - AntagStationEventScheduler
-  #  - MeteorSwarmScheduler Goobstation - nuh uh
-    - SpaceTrafficControlEventScheduler
-    - BasicRoundstartVariation
+  - DummyNonAntagChance
+  - Revolutionary
+  - SubGamemodesRule
+  - BasicStationEventScheduler
+  # - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+
+- type: gamePreset
+  id: Wizard
+  alias:
+  - wizard
+  name: wizard-title
+  description: wizard-description
+  showInVote: false
+  rules:
+  - Wizard
+  - DummyNonAntagChance
+  - BasicStationEventScheduler
+  # - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
 
 - type: gamePreset
   id: Zombie
@@ -223,7 +240,6 @@
   rules:
   - Zombie
   - BasicStationEventScheduler
-  - AntagStationEventScheduler
 #  - MeteorSwarmScheduler Goobstation - nuh uh
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
@@ -240,7 +256,6 @@
   rules:
   - Zombie
   - BasicStationEventScheduler
-  - AntagStationEventScheduler
-  - KesslerSyndromeScheduler
+ # - KesslerSyndromeScheduler
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation

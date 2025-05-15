@@ -1,10 +1,8 @@
-﻿- type: soundCollection
+- type: soundCollection
   id: NukeMusic
   files:
     - /Audio/StationEvents/running_out.ogg
     - /Audio/StationEvents/countdown.ogg
-    - /Audio/StationEvents/clearly_nuclear.ogg    
     - /Audio/StationEvents/sound_station_14.ogg
-
-    # Goobstation
-    - /Audio/StationEvents/last_call.ogg
+#funkystation
+    - /Audio/_Funkystation/StationEvents/split.ogg

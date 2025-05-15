@@ -21,6 +21,7 @@ research-technology-bluespace-storage = Bluespace Storage
 research-technology-portable-fission = Portable Fission
 research-technology-space-scanning = Space Scanning
 research-technology-excavation = Mass Excavation
+research-technology-atmospherics-exotech = Atmospherics Exotech
 
 research-technology-salvage-weapons = Salvage Weapons
 research-technology-draconic-munitions = Draconic Munitions
@@ -71,8 +72,3 @@ research-technology-advanced-spray = Advanced Spray
 research-technology-bluespace-cargo-transport = Bluespace Cargo Transport
 research-technology-quantum-fiber-weaving = Quantum Fiber Weaving
 research-technology-bluespace-chemistry = Bluespace Chemistry
-
-## Shitmed Change
-research-technology-advanced-treatment = Advanced Treatment
-research-technology-high-end-surgery = High End Surgical Tools
-research-technology-cybernetic-enhancements = Cybernetic Enhancements

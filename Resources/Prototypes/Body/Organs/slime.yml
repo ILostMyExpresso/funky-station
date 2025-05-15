@@ -8,6 +8,8 @@
       sprite: Mobs/Species/Slime/organs.rsi
       state: brain-slime
     - type: Stomach
+    - type: Organ
+      slotId: core
     - type: Metabolizer
       maxReagents: 6
       metabolizerTypes: [ Slime ]
@@ -34,7 +36,9 @@
           - ReagentId: Slime
             Quantity: 10
     - type: Item
-      size: Small
+      size: Normal
+      shape:
+      - 0,0,1,1
       heldPrefix: brain
 
 
@@ -76,5 +80,7 @@
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
   - type: Item
-    size: Small
+    size: Normal
+    shape:
+    - 0,0,1,1
     heldPrefix: lungs

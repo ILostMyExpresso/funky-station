@@ -5,7 +5,7 @@
   playTimeTracker: JobBlueshieldOfficer
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 54000 #15 hrs
+      time: 72000 #20 hrs
     - !type:DepartmentTimeRequirement
       department: Medical
       time: 18000 # 5 hours
@@ -24,8 +24,10 @@
   - Brig
   - External
   - Cryogenics
+  - Cargo
   - Maintenance
   - Engineering
+  - Atmospherics
   - Medical
   - Research
   - Command
@@ -40,16 +42,14 @@
 - type: startingGear
   id: BlueshieldOfficerGear
   equipment:
-    back: ClothingBackpackBlueshield
     shoes: ClothingShoesBootsJackFilled
     eyes: ClothingEyesGlassesMedSec
     gloves: ClothingHandsGlovesCombat
     id: ERTSecurityPDA
-    ears: ClothingHeadsetAltCommand
+    ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
     pocket1: UniqueBlueshieldOfficerLockerTeleporter
   storage:
     back:
-    - BoxSurvivalSlots
     - Flash
-    - DeathAcidifierImplanter #BluespaceLifelineImplanter
+    - BluespaceLifelineImplanter #DeathAcidifierImplanter

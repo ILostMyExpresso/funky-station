@@ -1,4 +1,5 @@
-﻿using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Damage;
 using Content.Shared.Whitelist;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -49,7 +50,7 @@ public sealed partial class ImplanterComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
-    public float DrawTime = 60f;
+    public float DrawTime = 30f;
 
     /// <summary>
     /// Good for single-use injectors
@@ -81,6 +82,36 @@ public sealed partial class ImplanterComponent : Component
     /// </summary>
     [DataField(required: true)]
     public ItemSlot ImplanterSlot = new();
+
+    /// <summary>
+    /// If true, the implanter may be used to remove all kinds of (deimplantable) implants without selecting any.
+    /// </summary>
+    [DataField]
+    public bool AllowDeimplantAll = false;
+
+    /// <summary>
+    /// The subdermal implants that may be removed via this implanter.
+    /// </summary>
+    [DataField]
+    public List<EntProtoId> DeimplantWhitelist = new();
+
+    /// <summary>
+    /// The damage inflicted on a failed implant draw.
+    /// </summary>
+    [DataField]
+    public DamageSpecifier DeimplantFailureDamage = new();
+
+    /// <summary>
+    /// Chosen implant to remove, if necessary.
+    /// </summary>
+    [AutoNetworkedField]
+    public EntProtoId? DeimplantChosen = null;
+
+    /// <summary>
+    /// Whether or not drawing an implant deletes the implant.
+    /// </summary>
+    [DataField]
+    public bool DeimplantCrushes = false;
 
     public bool UiUpdateNeeded;
 }

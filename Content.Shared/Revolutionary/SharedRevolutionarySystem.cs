@@ -1,11 +1,14 @@
 using Content.Shared.IdentityManagement;
+using Content.Shared.Implants;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Popups;
 using Content.Shared.Revolutionary.Components;
 using Content.Shared.Stunnable;
+using Content.Shared.Tag;
 using Robust.Shared.GameStates;
 using Robust.Shared.Player;
 using Content.Shared.Antag;
+using Content.Shared.Strip.Components;
 
 namespace Content.Shared.Revolutionary;
 
@@ -13,6 +16,7 @@ public abstract class SharedRevolutionarySystem : EntitySystem
 {
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedStunSystem _sharedStun = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
 
     public override void Initialize()
     {
@@ -24,6 +28,9 @@ public abstract class SharedRevolutionarySystem : EntitySystem
         SubscribeLocalEvent<RevolutionaryComponent, ComponentStartup>(DirtyRevComps);
         SubscribeLocalEvent<HeadRevolutionaryComponent, ComponentStartup>(DirtyRevComps);
         SubscribeLocalEvent<ShowAntagIconsComponent, ComponentStartup>(DirtyRevComps);
+
+        SubscribeLocalEvent<HeadRevolutionaryComponent, AddImplantAttemptEvent>(OnHeadRevImplantAttempt);
+        SubscribeLocalEvent<RevolutionaryComponent, AddImplantAttemptEvent>(OnRevImplantAttempt);
     }
 
     /// <summary>
@@ -36,6 +43,11 @@ public abstract class SharedRevolutionarySystem : EntitySystem
             comp.Broken = true; // Goobstation - Broken mindshield implant instead of break it
             Dirty(uid, comp);
             return;
+        }
+
+        if (HasComp<ThievingComponent>(uid)) // funkystation - We're doing it here because this FUCKING SUCKS
+        {
+            RemComp<ThievingComponent>(uid);
         }
 
         if (HasComp<RevolutionaryComponent>(uid))
@@ -80,6 +92,7 @@ public abstract class SharedRevolutionarySystem : EntitySystem
 
         return HasComp<ShowAntagIconsComponent>(uid);
     }
+    
     /// <summary>
     /// Dirties all the Rev components so they are sent to clients.
     ///
@@ -102,6 +115,39 @@ public abstract class SharedRevolutionarySystem : EntitySystem
         }
     }
 
+    private void OnHeadRevImplantAttempt(Entity<HeadRevolutionaryComponent> headRev, ref AddImplantAttemptEvent args)
+    {
+        if (TryCancelSelfMindshield(args.User, args.Target, args.Implant))
+            args.Cancel();
+    }
+
+    private void OnRevImplantAttempt(Entity<RevolutionaryComponent> rev, ref AddImplantAttemptEvent args)
+    {
+        if (TryCancelSelfMindshield(args.User, args.Target, args.Implant))
+            args.Cancel();
+    }
+
+    /// <summary>
+    /// Prevents Revs from mindshielding themselves.
+    /// </summary>
+    /// <param name="user">Person using implanter</param>
+    /// <param name="target">Target of implanter</param>
+    /// <param name="implant">The implant</param>
+    /// <returns></returns>
+    private bool TryCancelSelfMindshield(EntityUid user, EntityUid target, EntityUid implant)
+    {
+        if (user != target)
+            return false;
+        
+        if (!TryComp<TagComponent>(implant, out var tagComp))
+            return false;
+
+        if (!_tag.HasTag(tagComp, "MindShield"))
+            return false;
+
+        return true;
+    }
+
     // GoobStation
     /// <summary>
     /// Change headrevs ability to convert people
@@ -109,5 +155,14 @@ public abstract class SharedRevolutionarySystem : EntitySystem
     public void ToggleConvertAbility(Entity<HeadRevolutionaryComponent> headRev, bool toggle = true)
     {
         headRev.Comp.ConvertAbilityEnabled = toggle;
+    }
+
+    // Funky Station
+    /// <summary>
+    /// Change headrevs ability to give Rev Vision
+    /// </summary>
+    public void ToggleConvertGivesVision(Entity<HeadRevolutionaryComponent> headRev, bool toggle = true)
+    {
+        headRev.Comp.ConvertGivesRevVision = toggle;
     }
 }

@@ -3,7 +3,8 @@
 - type: latheRecipe
   abstract: true
   id: BaseWeaponRecipe
-  category: Weapons
+  categories:
+  - Weapons
   completetime: 2
   materials:
     Steel: 300
@@ -18,7 +19,8 @@
 - type: latheRecipe
   abstract: true
   id: BaseAmmoRecipe
-  category: Ammo
+  categories:
+  - Ammo
   completetime: 5
 
 - type: latheRecipe
@@ -261,6 +263,23 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
+  id: MagazinePistolSubMachineGunTopMountedIncendiary
+  result: MagazinePistolSubMachineGunTopMountedIncendiary
+  materials:
+    Steel: 25
+    Plastic: 275
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePistolSubMachineGunTopMountedUranium
+  result: MagazinePistolSubMachineGunTopMountedUranium
+  materials:
+    Steel: 25
+    Plastic: 137
+    Uranium: 138
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
   id: MagazineBoxPistol
   result: MagazineBoxPistol
   materials:
@@ -333,6 +352,13 @@
   materials:
     Steel: 205
 
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineLightRifleSilver
+  result: MagazineLightRifleSilver
+  materials:
+    Steel: 265
+    Silver: 300
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -531,6 +557,14 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
+  id: MagazineBoxLightRifleSilver
+  result: MagazineBoxLightRifleSilver
+  materials:
+    Steel: 450
+    Silver: 450
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
   id: MagazineBoxRiflePractice
   result: MagazineBoxRiflePractice
   materials:
@@ -676,17 +710,3 @@
     Plastic: 1000
     Plasma: 500
     Glass: 500
-
-# Shitmed Recipes
-
-- type: latheRecipe
-  id: SecurityCyberneticEyes
-  result: SecurityCyberneticEyes
-  category: Robotics
-  completetime: 5
-  materials:
-    Steel: 1000
-    Glass: 500
-    Plastic: 500
-    Gold: 300
-    Silver: 300

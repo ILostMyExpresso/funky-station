@@ -36,7 +36,7 @@
   - DragonDynamicMidround # space dragon spawn (M)
   - RevenantDynamicMidround # revenant spawn (M)
   - ZombiesDynamicMidround # zombie outbreak (M)
-  # blob todo (M)
+  - BlobDynamicMidround # blob mouse spawn(M)
   # spider infestation todo (M)
   # xenos todo (M)
   # improved kudzu todo (M)
@@ -79,10 +79,10 @@
     - secret2
   name: gamemode-dynamic-title
   description: gamemode-dynamic-description
-  showInVote: true
+  showInVote: false
   rules:
     - Dynamic
-    - BasicStationEventScheduler
+    - BasicStationEventSchedulerNoAntag
     - DynamicStationEventScheduler
     #- MeteorSwarmScheduler Goobstation - nuh uh
     - SpaceTrafficControlEventScheduler
@@ -100,9 +100,9 @@
   showInVote: false # admeme only
   rules:
     - DynamicUnforgiving
-    - BasicStationEventScheduler
+    - BasicStationEventSchedulerNoAntag
     - DynamicStationEventScheduler
-    - MeteorSwarmScheduler
+#    - MeteorSwarmScheduler Goob Edit
     - SpaceTrafficControlEventScheduler
     - SpaceTrafficControlFriendlyEventScheduler
     - BasicRoundstartVariation

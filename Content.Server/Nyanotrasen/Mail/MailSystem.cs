@@ -12,7 +12,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Chemistry.EntitySystems;
 using Content.Server.Damage.Components;
-using Content.Server.DeltaV.Cargo.Components;
+using Content.Server._DV.Cargo.Components;
 using Content.Server.Destructible;
 using Content.Server.Destructible.Thresholds;
 using Content.Server.Destructible.Thresholds.Behaviors;
@@ -53,7 +53,9 @@ using Content.Shared.Storage;
 using Content.Shared.Tag;
 using Robust.Shared.Audio.Systems;
 using Timer = Robust.Shared.Timing.Timer;
-using Content.Server.DeltaV.Cargo.Systems;
+using Content.Server._DV.Cargo.Systems;
+using Content.Shared.Cargo.Components;
+using Content.Shared.Cargo.Prototypes;
 
 namespace Content.Server.Mail
 {
@@ -251,7 +253,7 @@ namespace Content.Server.Mail
                 if (_stationSystem.GetOwningStation(uid) != station)
                     continue;
 
-                _cargoSystem.UpdateBankAccount(station, account, component.Bounty);
+                _cargoSystem.UpdateBankAccount((station, account), (int) component.Bounty, _cargoSystem.CreateAccountDistribution((station, account)));
             }
         }
 
@@ -309,7 +311,9 @@ namespace Content.Server.Mail
                 if (_stationSystem.GetOwningStation(uid) != station)
                     continue;
 
-                _cargoSystem.UpdateBankAccount(station, account, component.Penalty);
+                _cargoSystem.UpdateBankAccount((station, account),
+                    (int) component.Penalty,
+                    _cargoSystem.CreateAccountDistribution((station, account)));
                 return;
             }
         }

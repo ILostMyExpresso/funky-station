@@ -1,4 +1,4 @@
-﻿using Content.Shared.Body.Components;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
@@ -16,7 +16,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared.Body.Part;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(SharedBodySystem))]
+// [Access(typeof(SharedBodySystem))] Goob commented this for some reason
 public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent // Shitmed Change
 {
     // Need to set this on container changes as it may be several transform parents up the hierarchy.
@@ -29,25 +29,25 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     // Shitmed Change Start
 
     [DataField, AutoNetworkedField]
-    public EntityUid? OriginalBody;
-
-    [DataField, AutoNetworkedField]
     public BodyPartSlot? ParentSlot;
 
     /// <summary>
-    ///     Shitmed Change: Amount of damage to deal when the part gets removed.
-    ///     Only works if IsVital is true.
+    /// Shitmed Change: Bleeding stacks to give when this body part is severed.
+    /// Doubled for <see cref="IsVital"/>. parts.
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public FixedPoint2 VitalDamage = 100;
+    [DataField]
+    public float SeverBleeding = 4f;
 
-    [DataField, AlwaysPushInheritance]
+    [DataField]
     public string ToolName { get; set; } = "A body part";
+
+    [DataField]
+    public string SlotId = "";
 
     [DataField, AutoNetworkedField]
     public bool? Used { get; set; } = null;
 
-    [DataField, AlwaysPushInheritance]
+    [DataField]
     public float Speed { get; set; } = 1f;
 
     /// <summary>
@@ -126,7 +126,7 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     /// <summary>
     ///     Shitmed Change: The ID of the base layer for this body part.
     /// </summary>
-    [DataField, AutoNetworkedField, AlwaysPushInheritance]
+    [DataField, AutoNetworkedField]
     public string? BaseLayerId;
 
     /// <summary>
@@ -147,7 +147,7 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     };
 
 
-    [DataField, AutoNetworkedField, AlwaysPushInheritance]
+    [DataField, AutoNetworkedField]
     public BodyPartType PartType = BodyPartType.Other;
 
 
@@ -159,19 +159,19 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     [DataField("vital"), AutoNetworkedField]
     public bool IsVital;
 
-    [DataField, AutoNetworkedField, AlwaysPushInheritance]
+    [DataField, AutoNetworkedField]
     public BodyPartSymmetry Symmetry = BodyPartSymmetry.None;
 
     /// <summary>
     ///     When attached, the part will ensure these components on the entity, and delete them on removal.
     /// </summary>
-    [DataField, AlwaysPushInheritance]
+    [DataField]
     public ComponentRegistry? OnAdd;
 
     /// <summary>
     ///     When removed, the part will ensure these components on the entity, and add them on removal.
     /// </summary>
-    [DataField, AlwaysPushInheritance]
+    [DataField]
     public ComponentRegistry? OnRemove;
 
     // Shitmed Change End

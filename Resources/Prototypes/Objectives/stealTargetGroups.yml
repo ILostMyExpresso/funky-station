@@ -7,12 +7,12 @@
     sprite: Objects/Specific/Medical/hypospray.rsi
     state: hypo
 
-- type: stealTargetGroup
-  id: HandheldCrewMonitor
-  name: steal-target-groups-handheld-crew-monitor
-  sprite:
-    sprite: Objects/Specific/Medical/handheldcrewmonitor.rsi
-    state: scanner
+#- type: stealTargetGroup
+#  id: HandheldCrewMonitor
+#  name: steal-target-groups-handheld-crew-monitor
+#  sprite:
+#    sprite: Objects/Specific/Medical/handheldcrewmonitor.rsi
+#    state: scanner
 
 - type: stealTargetGroup
   id: ClothingOuterHardsuitRd
@@ -224,6 +224,13 @@
 - type: stealTargetGroup
   id: CargoShuttleConsoleCircuitboard
   name: steal-target-groups-cargo-shuttle-console-circuitboard
+  sprite:
+    sprite: Objects/Misc/module.rsi
+    state: cpuboard
+
+- type: stealTargetGroup
+  id: SalvageShuttleConsoleCircuitboard
+  name: steal-target-groups-salvage-shuttle-console-circuitboard
   sprite:
     sprite: Objects/Misc/module.rsi
     state: cpuboard

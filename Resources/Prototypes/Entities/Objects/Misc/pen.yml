@@ -33,17 +33,18 @@
   - type: ThrowingAngle
     angle: 315
   - type: LandAtCursor
+  - type: SignatureWriter # imp
   - type: DamageOtherOnHit
     damage:
       types:
         Piercing: 3
-#  - type: Tending # Shitmed TODO: Uncomment this when surgeries arent tied to interaction events, but verbs.
-#    speed: 0.55
-#  - type: SurgeryTool # Shitmed
-#    startSound:
-#      path: /Audio/_Shitmed/Medical/Surgery/retractor1.ogg
-#    endSound:
-#      path: /Audio/_Shitmed/Medical/Surgery/hemostat1.ogg
+  - type: Tending # Shitmed
+    speed: 0.55
+  - type: SurgeryTool # Shitmed
+    startSound:
+      path: /Audio/_Shitmed/Medical/Surgery/retractor1.ogg
+    endSound:
+      path: /Audio/_Shitmed/Medical/Surgery/hemostat1.ogg
 
 #TODO: I want the luxury pen to write a cool font like Merriweather in the future.
 
@@ -57,6 +58,12 @@
     state: luxury_pen
   - type: Item
     heldPrefix: luxury_pen
+  - type: SignatureWriter # imp
+    colorList:
+      black: "#2f4f4f"
+      blue: "#284283"
+      green: "#108473"
+      red: "#ac3235"
 
 - type: entity
   id: BaseAdvancedPen
@@ -93,6 +100,23 @@
     state: overpriced_pen
   - type: Item
     heldPrefix: overpriced_pen
+  - type: SignatureWriter # imp start
+    fontList:
+      Noto Sans: Default
+      Comic Neue: ComicNeue
+      Hachi Maru Pop: HachiMaruPop
+      Kode Mono: KodeMono
+      Reenie Beanie: ReenieBeanie
+      Tangerine: Tangerine
+      UnifrakturMaguntia: UnifrakturMaguntia
+      Wahroonga: Wahroonga
+    colorList:
+      black: "#2f4f4f"
+      blue: "#284283"
+      green: "#108473"
+      red: "#ac3235"
+      command blue: "#1b67a5"
+      CentComm green: "#009100" # imp end
 
 - type: entity
   name: CentComm pen
@@ -104,6 +128,8 @@
     state: pen_centcom
   - type: Item
     heldPrefix: pen_centcom
+  - type: SignatureWriter # imp
+    color: "#009100"
 
 - type: entity
   name: captain's fountain pen
@@ -114,6 +140,8 @@
   components:
   - type: Sprite
     state: pen_cap
+  - type: SignatureWriter # imp
+    color: "#1b67a5"
 
 - type: entity
   name: hop's fountain pen
@@ -124,3 +152,21 @@
   components:
   - type: Sprite
     state: pen_hop
+  - type: SignatureWriter # imp
+    color: "#1b67a5"
+
+- type: entity
+  name: wizard's magical pen
+  parent: [ Pen, BaseMagicalContraband ]
+  id: PenWiz
+  description: A luxurious fountain pen. Seems to have a magical crystal eraser.
+  components:
+  - type: Sprite
+    state: pen_wizard
+  - type: Tag
+    tags:
+    - WriteIgnoreStamps
+    - Write
+    - Pen
+  - type: SignatureWriter # imp
+    color: "#7d1ba5"

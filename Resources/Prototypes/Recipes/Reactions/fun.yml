@@ -201,3 +201,59 @@
   effects:
     - !type:CreateEntityReactionEffect
       entity: MaterialGunpowder
+
+- type: reaction
+  id: SolidifyGold
+  impact: Low
+  quantized: true
+  reactants:
+    Gold:
+      amount: 10
+    FrostOil:
+      amount: 5
+  effects:
+  - !type:CreateEntityReactionEffect
+    entity: IngotGold1
+
+- type: reaction
+  id: SolidifySilver
+  impact: Low
+  quantized: true
+  reactants:
+    Silver:
+      amount: 10
+    FrostOil:
+      amount: 5
+  effects:
+  - !type:CreateEntityReactionEffect
+    entity: IngotSilver1
+
+- type: reaction
+  id: WehHewExplosion
+  impact: High
+  priority: 20
+  reactants:
+    JuiceThatMakesYouWeh:
+      amount: 1
+    JuiceThatMakesYouHew:
+      amount: 1
+  effects:
+  - !type:ExplosionReactionEffect
+    explosionType: Radioactive
+    maxIntensity: 200
+    intensityPerUnit: 2
+    intensitySlope: 1
+    maxTotalIntensity: 250
+    tileBreakScale: 0.00001
+
+# funkystation
+- type: reaction
+  id: HomemadeSyrup
+  minTemp: 390
+  reactants:
+    Water:
+      amount: 1
+    Sugar:
+      amount: 1
+  products:
+    Syrup: 2

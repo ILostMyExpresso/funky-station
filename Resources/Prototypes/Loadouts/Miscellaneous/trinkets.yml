@@ -41,6 +41,12 @@
     back:
     - PlushieSpaceLizard
 
+- type: loadout
+  id: PlushieCirno
+  storage:
+    back:
+    - PlushieCirno
+
 # Smokeables
 - type: loadout
   id: Lighter
@@ -98,6 +104,12 @@
     - ClothingNeckLGBTPin
 
 - type: loadout
+  id: ClothingNeckAllyPin
+  storage:
+    back:
+    - ClothingNeckAllyPin
+
+- type: loadout
   id: ClothingNeckAromanticPin
   storage:
     back:
@@ -146,6 +158,18 @@
     - ClothingNeckPansexualPin
 
 - type: loadout
+  id: ClothingNeckOmnisexualPin
+  storage:
+    back:
+    - ClothingNeckOmnisexualPin
+
+- type: loadout
+  id: ClothingNeckGenderqueerPin
+  storage:
+    back:
+    - ClothingNeckGenderqueerPin
+
+- type: loadout
   id: ClothingNeckTransPin
   storage:
     back:
@@ -162,6 +186,33 @@
   storage:
     back:
     - ClothingNeckGoldAutismPin
+
+# Playing Cards (GoobStation)
+- type: loadout
+  id: CardBoxBlack
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 36000 # 10hr
+  storage:
+    back:
+    - CardBoxBlack
+
+# Nanotrasen Variant
+- type: loadout
+  id: CardBoxNanotrasen
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobQuartermaster
+      time: 36000 # 10hr
+  storage:
+    back:
+    - CardBoxNanotrasen
+
+# End GoobStation
 
 # Towels
 - type: loadout
@@ -352,3 +403,16 @@
   storage:
     back:
     - TowelColorMime
+
+# funkystation
+- type: loadout
+  id: TowelColorCentcom
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: CentralCommand
+      time: 360000 # 100hr
+  storage:
+    back:
+    - TowelColorCentcom

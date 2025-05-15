@@ -1,9 +1,9 @@
 - type: gameMap
   id: Bagel
   mapName: 'Bagel Station'
-  mapPath: /Maps/_Goobstation/bagel.yml # Goobstation - custom bagel
+  mapPath: /Maps/_Funkystation/bagel.yml #Funkystation - Robotics(Based on Goob Version)
   minPlayers: 35
-  maxPlayers: 70
+  maxPlayers: 80
   stations:
     Bagel:
       stationProto: StandardNanotrasenStation
@@ -16,10 +16,11 @@
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/Shuttles/emergency_lox.yml
         - type: StationJobs
-          availableJobs:
+          availableJobs: # 60 jobs total w/o latejoins & interns, 77 jobs total w/ latejoins & interns
             #command
             Captain: [ 1, 1 ]
             NanotrasenRepresentative: [ 1, 1 ]
+            InternalAffairsAgent: [ 2, 2 ]
             BlueshieldOfficer: [ 1, 1 ]
             #service
             HeadOfPersonnel: [ 1, 1 ]
@@ -43,12 +44,13 @@
             MedicalIntern: [ 4, 4 ]
             #science
             ResearchDirector: [ 1, 1 ]
-            Scientist: [ 5, 5 ]
+            Scientist: [ 4, 4 ]
+            Roboticist: [ 1, 1 ]
             ResearchAssistant: [ 4, 4 ]
-            #security
+            #security (10)
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
-            SecurityOfficer: [ 4, 4 ]
+            SecurityOfficer: [ 6, 6 ]
             Detective: [ 1, 1 ]
             SecurityCadet: [ 4, 4 ]
             Lawyer: [ 2, 2 ]

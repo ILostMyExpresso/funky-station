@@ -1,7 +1,7 @@
 - type: gameMap
   id: Origin
   mapName: 'Origin'
-  mapPath: /Maps/_Goobstation/origin.yml
+  mapPath: /Maps/_Funkystation/origin.yml #Funkystation - Robotics
   minPlayers: 50
   maxPlayers: 85
   stations:
@@ -20,6 +20,7 @@
             #service
             StationAi: [ 1, 1 ]
             NanotrasenRepresentative: [ 1, 1 ]
+            InternalAffairsAgent: [ 2, 2 ] # Funkystation
             BlueshieldOfficer: [ 1, 1 ]
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
@@ -45,7 +46,8 @@
             MedicalIntern: [ 1, 2 ]
             #science
             ResearchDirector: [ 1, 1 ]
-            Scientist: [ 6, 6 ]
+            Scientist: [ 5, 5 ]
+            Roboticist: [ 1, 1 ]
             ResearchAssistant: [ 4, 4 ]
             Borg: [ 2, 2 ]
             #security
@@ -66,3 +68,9 @@
             Boxer: [ 1, 1 ]
             Reporter: [ 1, 1 ]
 
+        # Goobstation blob-config-start HUGE
+        - type: StationBlobConfig
+          stageBegin: 40
+          stageCritical: 450
+          stageTheEnd: 900
+        # Goobstation blob-config-end

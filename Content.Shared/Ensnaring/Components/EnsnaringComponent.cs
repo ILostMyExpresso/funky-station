@@ -39,6 +39,12 @@ public sealed partial class EnsnaringComponent : Component
     public float StaminaDamage = 55f;
 
     /// <summary>
+    /// How many times can the ensnare be applied to the same target?
+    /// </summary>
+    [DataField]
+    public float MaxEnsnares = 1;
+
+    /// <summary>
     /// Should this ensnare someone when thrown?
     /// </summary>
     [DataField]
@@ -58,6 +64,13 @@ public sealed partial class EnsnaringComponent : Component
 
     [DataField]
     public SoundSpecifier? EnsnareSound = new SoundPathSpecifier("/Audio/Effects/snap.ogg");
+
+    /// <summary>
+    /// Goobstation
+    /// Should the ensaring entity be deleted upon removal?
+    /// </summary>
+    [DataField]
+    public bool DestroyOnRemove;
 }
 
 /// <summary>

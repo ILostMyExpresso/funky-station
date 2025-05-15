@@ -7,11 +7,14 @@
   requirements:
   - !type:RoleTimeRequirement
     role: JobBorg
-    time: 54000  # 15 hrs
+    time: 72000 #20 hrs
+  - !type:OverallPlaytimeRequirement
+    time: 90000 #25 hrs
   canBeAntag: false
   icon: JobIconStationAi
   supervisors: job-supervisors-rd
   jobEntity: StationAiBrain
+  jobPreviewEntity: PlayerStationAiPreview
   applyTraits: false
 
 - type: job
